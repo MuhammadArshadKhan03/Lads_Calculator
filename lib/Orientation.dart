@@ -507,12 +507,13 @@ class _MyHomePageState extends State<MyHomePage> {
       //     result = spilt[0];
       //   }
       // }
-      else if (buttonText == "³√x") {
-        // var cuberoot = equation.isCube;
-        print("helooooooooooo----------${double.parse(equation).cbrt()}");
-        result = double.parse(equation).cbrt().toString();
-        print(27.cbrt());
-      } else if (buttonText == "¹/x") {
+      // else if (buttonText == "³√x") {
+      //   // var cuberoot = equation.isCube;
+      //   print("helooooooooooo----------${double.parse(equation).cbrt()}");
+      //   result = double.parse(equation).cbrt().toString();
+      //   print(27.cbrt());
+      //}
+      else if (buttonText == "¹/x") {
         double b;
         b = 1 / int.parse('$equation');
         equation = "¹/$equation ";
@@ -777,16 +778,50 @@ class _MyHomePageState extends State<MyHomePage> {
             // }
             //else
             {
+              String sum = "+";
+              String sub = "-";
+              String mul = "x";
+              String div = "÷";
               expression = equation.toString();
-              if (buttonText == "(") {
-                if (!equation.contains("x", equation.length - 1) ||
-                    !equation.contains("-", equation.length - 1) ||
-                    !equation.contains("÷", equation.length - 1) ||
-                    !equation.contains("", equation.length - 1)) {
-                  buttonText = "x(";
+              print("EXPRESSION 1:------------$expression");
+              if (expression.contains("(")) {
+                var b = expression.indexOf("(");
+                // generate(expression.length, (index) {
+                //   if (expression.contains("(")) {
+                //     print(index);
+                //   }
+                // });
+                print(
+                    "0-0-0-----------------------${b - 1}----${expression[b - 1].toString()}--");
+                print(expression[b - 1].toString());
+                String ch = expression[b - 1].toString();
+                print(ch);
+                if (ch == mul) {
+                  print(ch.compareTo("x"));
+                  expression = expression.replaceAll("(", "(");
+                } else if (ch == div) {
+                  print(ch.compareTo("÷"));
+                  expression = expression.replaceAll("(", "(");
+                } else if (ch == sum) {
+                  print(ch.compareTo("+"));
+                  expression = expression.replaceAll("(", "(");
+                } else if (ch == sub) {
+                  print(ch.compareTo("-"));
+                  expression = expression.replaceAll("(", "(");
+                }
+                // if (expression[b - 1].toString() == "x" ||
+                //     expression[b - 1].toString() == "÷" ||
+                //     expression[b - 1].toString() == "+" ||
+                //     expression[b - 1].toString() == "-") {
+                //   print(true);
+                //   expression = expression.replaceAll("(", "(");
+                // }
+
+                else {
+                  expression = expression.replaceAll("(", "*(");
                 }
               }
-
+              print("EXPRESSION 2 :------------$expression");
               expression = expression.replaceAll("×", "*");
               expression = expression.replaceAll("÷", "/");
               expression = expression.replaceAll("xʸ", "^");
